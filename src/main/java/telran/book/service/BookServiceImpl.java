@@ -50,6 +50,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public BookDto removeBookByIsbn(String isbn) {
     Book book = bookRepository.findById(isbn).orElseThrow(EntityNotFoundException::new);
     BookDto bookDto = modelMapper.map(book, BookDto.class);
@@ -58,6 +59,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public BookDto updateBookByIsbn(String isbn, String title) {
     Book book = bookRepository.findById(isbn).orElseThrow(EntityNotFoundException::new);
     book.setTitle(title);
